@@ -1,0 +1,10 @@
+:root {
+    --cor-verde: #218052;
+    --cor-cinza: #333;
+  }
+
+.container-home {
+    width: 100%;
+    height: 100vh;
+    background-color: whitesmoke;
+}
