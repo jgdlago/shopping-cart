@@ -5,8 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,13 +39,14 @@ public class ProdutoController extends GenericController<Produto> {
 	    }
 	}
 	
-	@PostMapping("/{carrinhoId}")
-	public ResponseEntity<Object> addToCart(@RequestBody Produto produto, @PathVariable long carrinhoId) {
+	@PutMapping("/{produtoId}/addCarrinho/{carrinhoId}")
+	public ResponseEntity<Object> addToCart(@PathVariable long produtoId, @PathVariable Long carrinhoId) {
         try {
-            produtoService.addToCart(produto, carrinhoId);
-            return ResponseEntity.status(HttpStatus.OK).body("Produto Adicionado!");
+            produtoService.addToCart(produtoId, carrinhoId);
+            return ResponseEntity.status(HttpStatus.OK).body("Produto adicionado ao carrinho!");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 	}
+	
 }

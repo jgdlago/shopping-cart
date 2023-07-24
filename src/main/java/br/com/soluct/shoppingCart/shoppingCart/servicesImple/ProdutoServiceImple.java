@@ -1,8 +1,5 @@
 package br.com.soluct.shoppingCart.shoppingCart.servicesImple;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -39,31 +36,18 @@ public class ProdutoServiceImple implements ProdutoService {
         }
     }
 
-    @Override
-    public void addToCart(Produto produto, long carrinhoId) throws Exception {
-        Carrinho carrinho;
-        Optional<Carrinho> carrinhoOptional = carrinhoRepository.findById(carrinhoId);
+	@Override
+	public void addToCart(long produtoId, long carrinhoId) throws Exception {
+        Produto produto = produtoRepository.findById(produtoId).orElse(null);
+        Carrinho carrinho = carrinhoRepository.findById(carrinhoId).orElse(null);
 
-        if (carrinhoOptional.isPresent()) {
-            carrinho = carrinhoOptional.get();
+        if (produto != null && carrinho != null) {
+            produto.setCarrinho(carrinho);
+            produtoRepository.save(produto);
         } else {
-            // Se o carrinho não existe, crie um novo carrinho
-            carrinho = new Carrinho();
-            carrinho.setProdutos(new ArrayList<>());
+            throw new IllegalArgumentException("Produto ou Carrinho não encontrado");
         }
-
-        List<Produto> listaProdutos = carrinho.getProdutos();
-        listaProdutos.add(produto);
-
-        // Defina o carrinho para o produto
-        produto.setCarrinho(carrinho);
-
-        carrinho.setProdutos(listaProdutos);
-        carrinhoRepository.save(carrinho);
-    }
-
-
-
-
+		
+	}
 
 }
