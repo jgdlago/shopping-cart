@@ -12,8 +12,7 @@ Acessar a pasta shopping-cart pelo terminal e executar o comando npm start ou ya
 
 POST http://localhost:8080/produto
 GET http://localhost:8080/produto
-
-http://localhost:8080/produto/{idProduto}/addCarrinho/{idCarrinho}
-http://localhost:8080/carrinho/update
-http://localhost:8080/produto/codigo/{codigoProduto}
-http://localhost:8080/produto/{idProduto}/updateQtd/{quantidade}
+PUT http://localhost:8080/produto/{idProduto}/addCarrinho/{idCarrinho}
+GET http://localhost:8080/carrinho/update
+DLETE http://localhost:8080/produto/codigo/{codigoProduto}
+PUT http://localhost:8080/produto/{idProduto}/updateQtd/{quantidade}
