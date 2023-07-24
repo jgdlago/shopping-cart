@@ -15,10 +15,12 @@ public class ProdutoServiceImple implements ProdutoService {
 	
 	private final ProdutoRepository produtoRepository;
 	private final CarrinhoRepository carrinhoRepository;
-	public ProdutoServiceImple(ProdutoRepository produtoRepository, CarrinhoRepository carrinhoRepository) {
+	private final CarrinhoServiceImple carrinhoServiceImple;
+	public ProdutoServiceImple(ProdutoRepository produtoRepository, CarrinhoRepository carrinhoRepository, CarrinhoServiceImple carrinhoServiceImple) {
 		super();
 		this.produtoRepository = produtoRepository;
 		this.carrinhoRepository = carrinhoRepository;
+		this.carrinhoServiceImple = carrinhoServiceImple;
 	}
 	
 	@Override
@@ -53,6 +55,7 @@ public class ProdutoServiceImple implements ProdutoService {
             produto.setCarrinho(carrinho);
             produto.setQuantidade(1);
             produtoRepository.save(produto);
+            carrinhoServiceImple.checkoutPromo(carrinhoId);
         } else {
             throw new IllegalArgumentException("Produto ou Carrinho não encontrado");
         }
@@ -65,6 +68,7 @@ public class ProdutoServiceImple implements ProdutoService {
         if (produto != null) {
             produto.setQuantidade(novaQuantidade);
             produtoRepository.save(produto);
+            
         } else {
             throw new Exception("Produto não encontrado");
         }

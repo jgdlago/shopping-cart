@@ -1,6 +1,5 @@
 package br.com.soluct.shoppingCart.shoppingCart.entities;
 
-import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -25,7 +24,7 @@ public class Produto extends GenericEntity {
 	private String unidadeMedida;
 	
 	@Column(nullable = false)
-	private BigDecimal valor;
+	private Double valor;
 	
 	@Column(nullable = true)
 	private int quantidade;
@@ -67,11 +66,11 @@ public class Produto extends GenericEntity {
 		this.unidadeMedida = unidadeMedida;
 	}
 
-	public BigDecimal getValor() {
+	public Double getValor() {
 		return valor;
 	}
 
-	public void setValor(BigDecimal valor) {
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}
 

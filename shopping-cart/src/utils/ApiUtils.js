@@ -4,26 +4,13 @@ const API_BASE_URL = 'http://localhost:8080';
 
 export const fetchCartList = async () => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/carrinho`);
+    const response = await axios.get(`${API_BASE_URL}/carrinho/update`);
     return response.data;
   } catch (error) {
     console.error('Erro ao obter lista de carrinho:', error);
     return [];
   }
 };
-
-export const calcularValorTotalCarrinho = (carrinho) => {
-  let total = 0;
-  if (carrinho && carrinho.produtos) { // Verifica se a lista de produtos existe
-    carrinho.produtos.forEach(produto => {
-      // Multiplica o valor do produto pela sua quantidade
-      total += produto.valor * produto.quantidade;
-    });
-  }
-  return total;
-};
-
-
 
 export const fetchProductList = async () => {
   try {
@@ -56,7 +43,6 @@ export const deleteProductByCodigo = async (codigo) => {
 
 export const addProductToCart = async (productId) => {
   try {
-    // Fazer a requisição POST para adicionar o produto ao carrinho
     const response = await axios.put(`${API_BASE_URL}/produto/${productId}/addCarrinho/1`, {
       listaProdutos: [
         {

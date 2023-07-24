@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './cartListStyle.css';
-import { fetchCartList, calcularValorTotalCarrinho, removeProductFromCart } from '../../utils/ApiUtils';
+import { fetchCartList, removeProductFromCart } from '../../utils/ApiUtils';
 import CustomButton from '../customButton/customButton';
 
 const CartList = () => {
@@ -26,9 +26,7 @@ const CartList = () => {
 
   const handleRemoveProduct = async (carrinhoId, produtoCodigo) => {
     try {
-      // Fazer a requisição DELETE para remover o produto do carrinho
       await removeProductFromCart(carrinhoId, produtoCodigo);
-      // Atualizar a lista de produtos do carrinho após a remoção
       updateCartAfterRemovingProduct();
     } catch (error) {
       console.error('Erro ao remover produto do carrinho:', error);
@@ -51,7 +49,6 @@ const CartList = () => {
           {cart.map(item => (
             <tr key={item.id}>
               <td>
-                {/* Mapear a lista de produtos e exibir o nome e a unidade de medida */}
                 {item.produtos && item.produtos.map(produto => (
                   <div key={produto.id}>
                     {produto.nomeProduto} ({produto.unidadeMedida})
@@ -59,7 +56,6 @@ const CartList = () => {
                 ))}
               </td>
               <td>
-                {/* Mapear a lista de produtos e exibir o valor */}
                 {item.produtos && item.produtos.map(produto => (
                   <div key={produto.id}>
                     {produto.valor}
@@ -67,7 +63,6 @@ const CartList = () => {
                 ))}
               </td>
               <td>
-                {/* Mapear a lista de produtos e exibir a quantidade */}
                 {item.produtos && item.produtos.map(produto => (
                   <div key={produto.id}>
                     {produto.quantidade}
@@ -75,7 +70,6 @@ const CartList = () => {
                 ))}
               </td>
               <td>
-                {/* Mapear a lista de produtos e exibir o botão de remover */}
                 {item.produtos && item.produtos.map(produto => (
                   <div key={produto.id}>
                     <CustomButton onClick={() => handleRemoveProduct(item.id, produto.codigo)} text={"Remover"} />
@@ -88,10 +82,11 @@ const CartList = () => {
         <tfoot>
           <tr>
             <th>Total do Carrinho</th>
-            <td>R$ {cart.reduce((total, item) => total + calcularValorTotalCarrinho(item), 0)}</td>
+            <td>R$ {cart.reduce((total, item) => total + item.valorTotal, 0)}</td>
             <td></td>
           </tr>
         </tfoot>
+
       </table>
     </div>
   );
