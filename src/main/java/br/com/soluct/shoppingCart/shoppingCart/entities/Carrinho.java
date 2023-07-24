@@ -2,6 +2,7 @@ package br.com.soluct.shoppingCart.shoppingCart.entities;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -11,16 +12,14 @@ import jakarta.persistence.Table;
 @Table(name = "carrinho")
 public class Carrinho extends GenericEntity {
 
-    @OneToMany
-    private List<Produto> listaProdutos;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "carrinho", orphanRemoval = true)
+	private List<Produto> produtos;
 
-    
-	public List<Produto> getListaProdutos() {
-		return listaProdutos;
-	}
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
 
-	public void setListaProdutos(List<Produto> listaProdutos) {
-		this.listaProdutos = listaProdutos;
-	}
-
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
 }

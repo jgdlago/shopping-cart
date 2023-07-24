@@ -4,5 +4,6 @@ import br.com.soluct.shoppingCart.shoppingCart.entities.Carrinho;
 
 public interface CarrinhoService extends GenericService<Carrinho> {
 	
+    void removeProdutoFromCarrinho(long carrinhoId, String produtoCodigo) throws Exception;
 	
 }

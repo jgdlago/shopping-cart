@@ -2,6 +2,8 @@ package br.com.soluct.shoppingCart.shoppingCart.entities;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -25,9 +27,10 @@ public class Produto extends GenericEntity {
 	@Column(nullable = false)
 	private BigDecimal valor;
 
-    @ManyToOne
-    @JoinColumn(name = "carrinho_id", nullable = true)
-    private Carrinho carrinho;
+	@ManyToOne
+	@JoinColumn(name = "carrinho_id", nullable = true)
+	@JsonIgnore
+	private Carrinho carrinho;
 	
 	public String getCodigo() {
 		return codigo;
@@ -59,5 +62,13 @@ public class Produto extends GenericEntity {
 
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
+	}
+
+	public Carrinho getCarrinho() {
+		return carrinho;
+	}
+
+	public void setCarrinho(Carrinho carrinho) {
+		this.carrinho = carrinho;
 	}
 }
