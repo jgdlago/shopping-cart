@@ -43,19 +43,12 @@ export const deleteProductByCodigo = async (codigo) => {
 
 export const addProductToCart = async (productId) => {
   try {
-    const response = await axios.put(`${API_BASE_URL}/produto/${productId}/addCarrinho/1`, {
-      listaProdutos: [
-        {
-          id: productId,
-        },
-      ],
-    });
-    return response.data;
+    await axios.put(`${API_BASE_URL}/produto/${productId}/addCarrinho/1`, {});
   } catch (error) {
     console.error('Erro ao adicionar produto ao carrinho:', error);
     throw new Error('Erro ao adicionar produto ao carrinho');
   }
-};
+}
 
 export const removeProductFromCart = async (carrinhoId, produtoCodigo) => {
   try {

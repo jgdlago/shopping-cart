@@ -46,14 +46,15 @@ const ProductList = () => {
 
   const handleAddToCart = async (productId) => {
     try {
-      const selectedProduct = products.find(product => product.id === productId);
-      await addProductToCart(selectedProduct);
+      await addProductToCart(productId);
       fetchProductListData();
       fetchCartList();
+      window.location.reload();
     } catch (error) {
       console.error(error.message);
     }
   };
+  
 
   return (
     <div className="ProductList">
