@@ -49,4 +49,14 @@ public class ProdutoController extends GenericController<Produto> {
         }
 	}
 	
+	@PutMapping("/{produtoId}/updateQtd/{quantidade}")
+	public ResponseEntity<Object> updateQtd(@PathVariable long produtoId, @PathVariable int quantidade){
+        try {
+            produtoService.updateQtd(produtoId, quantidade);
+            return ResponseEntity.status(HttpStatus.OK).body("Produto atualizado!");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+	}
+	
 }

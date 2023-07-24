@@ -35,7 +35,8 @@ public class CarrinhoServiceImple implements CarrinhoService {
 
         if (produtoOptional.isPresent()) {
             Produto produto = produtoOptional.get();
-            carrinho.getProdutos().remove(produto);
+            produto.setCarrinho(null);
+            produto.setQuantidade(0);
             carrinhoRepository.save(carrinho);
         } else {
             throw new Exception("Produto não encontrado no carrinho");

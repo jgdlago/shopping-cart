@@ -16,11 +16,13 @@ export const calcularValorTotalCarrinho = (carrinho) => {
   let total = 0;
   if (carrinho && carrinho.produtos) { // Verifica se a lista de produtos existe
     carrinho.produtos.forEach(produto => {
-      total += produto.valor;
+      // Multiplica o valor do produto pela sua quantidade
+      total += produto.valor * produto.quantidade;
     });
   }
   return total;
 };
+
 
 
 export const fetchProductList = async () => {

@@ -51,11 +51,23 @@ public class ProdutoServiceImple implements ProdutoService {
 
         if (produto != null && carrinho != null) {
             produto.setCarrinho(carrinho);
+            produto.setQuantidade(1);
             produtoRepository.save(produto);
         } else {
             throw new IllegalArgumentException("Produto ou Carrinho não encontrado");
         }
     }
+    
+    @Override
+    public void updateQtd(long produtoId, int novaQuantidade) throws Exception {
+        Produto produto = produtoRepository.findById(produtoId).orElse(null);
 
+        if (produto != null) {
+            produto.setQuantidade(novaQuantidade);
+            produtoRepository.save(produto);
+        } else {
+            throw new Exception("Produto não encontrado");
+        }
+    }
 
 }

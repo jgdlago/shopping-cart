@@ -43,13 +43,15 @@ const CartList = () => {
           <tr>
             <th>Produto</th>
             <th>Valor Individual</th>
-            <th>Ações</th> {/* Novo cabeçalho para a coluna de botões de ação */}
+            <th>Quantidade</th>
+            <th>Ações</th>
           </tr>
         </thead>
         <tbody>
           {cart.map(item => (
             <tr key={item.id}>
               <td>
+                {/* Mapear a lista de produtos e exibir o nome e a unidade de medida */}
                 {item.produtos && item.produtos.map(produto => (
                   <div key={produto.id}>
                     {produto.nomeProduto} ({produto.unidadeMedida})
@@ -57,6 +59,7 @@ const CartList = () => {
                 ))}
               </td>
               <td>
+                {/* Mapear a lista de produtos e exibir o valor */}
                 {item.produtos && item.produtos.map(produto => (
                   <div key={produto.id}>
                     {produto.valor}
@@ -64,9 +67,18 @@ const CartList = () => {
                 ))}
               </td>
               <td>
+                {/* Mapear a lista de produtos e exibir a quantidade */}
                 {item.produtos && item.produtos.map(produto => (
                   <div key={produto.id}>
-                    <CustomButton onClick={() => handleRemoveProduct(item.id, produto.codigo)} text={"Remover"}/>
+                    {produto.quantidade}
+                  </div>
+                ))}
+              </td>
+              <td>
+                {/* Mapear a lista de produtos e exibir o botão de remover */}
+                {item.produtos && item.produtos.map(produto => (
+                  <div key={produto.id}>
+                    <CustomButton onClick={() => handleRemoveProduct(item.id, produto.codigo)} text={"Remover"} />
                   </div>
                 ))}
               </td>
@@ -77,7 +89,7 @@ const CartList = () => {
           <tr>
             <th>Total do Carrinho</th>
             <td>R$ {cart.reduce((total, item) => total + calcularValorTotalCarrinho(item), 0)}</td>
-            <td></td> {/* Célula vazia para manter alinhamento das colunas */}
+            <td></td>
           </tr>
         </tfoot>
       </table>

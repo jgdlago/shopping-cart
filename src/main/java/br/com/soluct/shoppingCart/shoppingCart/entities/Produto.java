@@ -26,6 +26,9 @@ public class Produto extends GenericEntity {
 	
 	@Column(nullable = false)
 	private BigDecimal valor;
+	
+	@Column(nullable = true)
+	private int quantidade;
 
 	@ManyToOne
 	@JoinColumn(name = "carrinho_id", nullable = true)
@@ -34,6 +37,14 @@ public class Produto extends GenericEntity {
 	
 	public String getCodigo() {
 		return codigo;
+	}
+
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
 	}
 
 	public void setCodigo(String codigo) {
