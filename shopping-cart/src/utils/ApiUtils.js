@@ -65,3 +65,13 @@ export const removeProductFromCart = async (carrinhoId, produtoCodigo) => {
     throw new Error('Erro ao remover produto do carrinho');
   }
 };
+
+
+export const updateQuantity = async (productId, quantidade) => {
+  try {
+    await axios.put(`${API_BASE_URL}/produto/${productId}/updateQtd/${quantidade}`);
+  } catch (error) {
+    console.error('Não foi possível atualizar a quantiade:', error);
+    throw new Error('Não foi possível atualizar a quantiade')
+  }
+}
