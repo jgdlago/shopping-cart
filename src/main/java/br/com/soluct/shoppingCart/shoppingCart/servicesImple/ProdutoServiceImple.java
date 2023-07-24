@@ -36,10 +36,18 @@ public class ProdutoServiceImple implements ProdutoService {
         }
     }
 
-	@Override
-	public void addToCart(long produtoId, long carrinhoId) throws Exception {
+    @Override
+    public void addToCart(long produtoId, long carrinhoId) throws Exception {
         Produto produto = produtoRepository.findById(produtoId).orElse(null);
-        Carrinho carrinho = carrinhoRepository.findById(carrinhoId).orElse(null);
+        Carrinho carrinho = null;
+        if (carrinhoId != 0) {
+            carrinho = carrinhoRepository.findById(carrinhoId).orElse(null);
+        }
+        if (carrinho == null) {
+            carrinho = new Carrinho();
+            carrinho.setId(1L);
+            carrinhoRepository.save(carrinho);
+        }
 
         if (produto != null && carrinho != null) {
             produto.setCarrinho(carrinho);
@@ -47,7 +55,7 @@ public class ProdutoServiceImple implements ProdutoService {
         } else {
             throw new IllegalArgumentException("Produto ou Carrinho não encontrado");
         }
-		
-	}
+    }
+
 
 }
