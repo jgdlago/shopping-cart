@@ -73,8 +73,6 @@ public class CarrinhoServiceImple implements CarrinhoService {
         return carrinhoRepository.save(carrinho);
     }
 
-    
-//  Biscoitos
     public Produto promoBiscoitos(Produto produto) {
         int quantidade = produto.getQuantidade();
         int quantidadePaga = quantidade / 2;
@@ -83,12 +81,10 @@ public class CarrinhoServiceImple implements CarrinhoService {
         double valorUnitarioPromocional = produto.getValor().doubleValue() / quantidadeTotal;
         valorUnitarioPromocional = Math.round(valorUnitarioPromocional * 100.0) / 100.0;
 
-        produto.setQuantidade(quantidadeTotal);
         produto.setValor(Double.valueOf(valorUnitarioPromocional));
         return produto;
     }
     
-//	potes
     public Produto promoPotes(Produto produto) {
     	if(produto.getQuantidade() > 1) {
     		produto.setValor(21.70);
@@ -96,7 +92,6 @@ public class CarrinhoServiceImple implements CarrinhoService {
 		return produto;
     }
     
-// 	Energetico
     public Produto promoEnergetico(Produto produto) {
 		if(produto.getQuantidade() > 6) {
 			produto.setValor(7.70);
@@ -104,7 +99,6 @@ public class CarrinhoServiceImple implements CarrinhoService {
     	return produto;
     }
     
-//  vinho
     public Produto promoVinho(Produto produto) {
         int quantidade = produto.getQuantidade();
         int quantidadePagas = quantidade / 3; 
@@ -117,7 +111,6 @@ public class CarrinhoServiceImple implements CarrinhoService {
         return produto;
     }
     
-//  Suco
     public Produto promoSuco(Produto produto) {   
         if (produto.getQuantidade() >= 4) {
             double desconto = produto.getValor() * 0.1;
@@ -127,7 +120,6 @@ public class CarrinhoServiceImple implements CarrinhoService {
         return produto;
     }
     
-// Creme de leite
     public Produto promoCremeLeite(Produto produto) {
     	if(produto.getQuantidade() >= 3) {
     		produto.setValor(3.00);
