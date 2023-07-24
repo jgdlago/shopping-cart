@@ -21,4 +21,13 @@ public class ProdutoServiceImple implements ProdutoService {
 		return produtoRepository;
 	}
 	
+    @Override
+    public void deleteByCodigo(String codigo) throws Exception {
+        Produto produto = produtoRepository.findByCodigo(codigo);
+        if (produto != null) {
+            produtoRepository.delete(produto);
+        } else {
+            throw new Exception("Produto não encontrado");
+        }
+    }
 }

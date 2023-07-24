@@ -1,0 +1,21 @@
+:root {
+    --cor-verde: #218052;
+    --cor-cinza: #333;
+}
+
+.CustomButton {
+    padding: 8px 16px;
+    border-radius: 5px;
+    border: none;
+    background: var(--cor-cinza);
+    color: whitesmoke;
+    margin: 5px;
+}
+
+.CustomButton:hover {
+    color: var(--cor-verde);
+    cursor: pointer;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+}

@@ -7,4 +7,6 @@ import br.com.soluct.shoppingCart.shoppingCart.entities.Produto;
 @Repository
 public interface ProdutoRepository extends GenericRepository<Produto> {
 
+	Produto findByCodigo(String codigo);
+
 }

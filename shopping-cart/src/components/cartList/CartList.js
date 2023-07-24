@@ -1,29 +1,26 @@
-// CartList.js
-
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import './cartListStyle.css';
+import { fetchCartList, calcularValorTotalCarrinho } from '../../utils/ApiUtils';
 
 const CartList = () => {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/carrinho')
-      .then(response => {
-        setCart(response.data);
-      })
-      .catch(error => {
-        console.error('Erro ao obter lista de carrinho:', error);
-      });
+    fetchCartListData();
   }, []);
 
-  // Função para calcular o valor total do carrinho
-  const calcularValorTotalCarrinho = (carrinho) => {
-    let total = 0;
-    carrinho.listaProdutos.forEach(produto => {
-      total += produto.valor;
-    });
-    return total;
+  const fetchCartListData = async () => {
+    const cartData = await fetchCartList();
+    setCart(cartData);
+  };
+
+  const updateCartAfterAddingProduct = async () => {
+    try {
+      const updatedCartData = await fetchCartList();
+      setCart(updatedCartData);
+    } catch (error) {
+      console.error('Erro ao atualizar carrinho:', error);
+    }
   };
 
   return (

@@ -2,11 +2,11 @@
     --cor-verde: #218052;
     --cor-cinza: #333;
   }
-
-.ProductList {
+  
+  .ProductList {
     padding: 20px;
     width: 45%;
-    height: 80vh;
+    height: 95vh;
     border: 1px solid #333;
     border-radius: 5px;
     background-color: var(--cor-verde);
@@ -14,44 +14,51 @@
     margin-top: 15px;
     color: whitesmoke;
     float: left;
+    overflow: auto; /* Adicione o overflow para exibir a barra de rolagem caso o conteúdo seja maior que o tamanho da div */
   }
-
-.ProductList h2 {
+  
+  .ProductList h2 {
     font-size: 24px;
     margin-bottom: 10px;
-}
+  }
   
-
-.ProductList ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-  
-
-.ProductList li {
-    margin-bottom: 8px;
-    font-size: 16px;
-}
-
-.ProductList li strong {
-    font-weight: bold;
-}
-
-.ProductList table {
+  .ProductList table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-}
-
-.ProductList th,
-.ProductList td {
+  }
+  
+  .ProductList th,
+  .ProductList td {
     padding: 8px;
     border: 1px solid var(--cor-cinza);
-}
-
-.ProductList th {
+  }
+  
+  .ProductList th {
     background-color: var(--cor-cinza);
     color: whitesmoke;
     font-weight: bold;
-}
+  }
+
+  .ProductList::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  .ProductList::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .ProductList::-webkit-scrollbar-thumb {
+    background-color: var(--cor-cinza);
+    border-radius: 5px;
+  }
+  
+  /* Personalização da barra de rolagem horizontal */
+  .ProductList::-webkit-scrollbar-thumb:horizontal {
+    background-color: var(--cor-verde);
+  }
+  
+  /* Personalização da barra de rolagem de canto (vertical + horizontal) */
+  .ProductList::-webkit-scrollbar-corner {
+    background: var(--cor-cinza);
+  }
